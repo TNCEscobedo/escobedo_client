@@ -8,6 +8,7 @@ import PersonasReducer from "./PersonasReducer";
 import PuestosReducer from "./PuestosReducer";
 import TarifasReducer from "./TarifasReducer";
 import UsuariosReducer from "./UsuariosReducer";
+import MenuReducer from "./MenuReducer";
 
 export default combineReducers({
     cobros: CobrosReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     personas: PersonasReducer,
     puestos: PuestosReducer,
     tarifas: TarifasReducer,
-    usuarios: UsuariosReducer
+    usuarios: UsuariosReducer,
+    menu: MenuReducer
 })
