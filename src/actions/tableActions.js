@@ -5,7 +5,8 @@ export const getFilas = (reducer, servicio) => dispatch => {
       dispatch({ type: `${reducer}_RECIBIDOS`, payload: res.data });
     })
     .catch(error => {
-      console.log(error);
+      if(error.response) console.log(error.response);
+      else console.log(error);
     });
 };
 
