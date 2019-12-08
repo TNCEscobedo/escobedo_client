@@ -7,6 +7,12 @@ export default class Input extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    if(this.props.as === "select" && (!this.props.value || this.props.value === ""))
+      if(this.props.options[0])
+        this.props.onChange(this.props.name, this.props.options[0].value);
+  }
+
   handleChange(e) {
     if (this.props.onChange) this.props.onChange(e.target.name, e.target.value);
   }

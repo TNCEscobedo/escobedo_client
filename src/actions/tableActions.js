@@ -19,6 +19,10 @@ export const setPropiedadFila = (reducer, key, value) => dispatch => {
   dispatch({ type: `SET_PROPIEDAD_${reducer}`, payload: { key, value } });
 };
 
-export const postFila = (reducer, servicio, fila) => dispatch => {};
+export const postFila = (reducer, servicio, fila) => dispatch => {
+  console.log(fila);
+};
 
-export const eliminarFila = (reducer, idFila) => dispatch => {};
+export const eliminarFila = (reducer, idFila) => dispatch => {
+  console.log(idFila);
+};

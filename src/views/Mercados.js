@@ -24,7 +24,7 @@ const schema = {
 
 const reducer = "MERCADOS";
 
-const turnos = [{ name: "Vespertino" }, { name: "Matutino" }];
+const turnos = [{ name: "Vespertino", value: "Vespertino" }, { name: "Matutino", value: "Matutino" }];
 
 const dias = [
   {
@@ -88,7 +88,7 @@ class Mercados extends Component {
             onChange={(key, value) =>
               this.props.setPropiedadFila(reducer, key, value)
             }
-            guardarFila={() => {}}
+            guardarFila={mercado => this.props.postFila(reducer, MercadosService, mercado)}
           />
         </Section>
       </View>

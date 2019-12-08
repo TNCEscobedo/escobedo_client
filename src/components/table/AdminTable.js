@@ -57,7 +57,7 @@ class AdminTable extends Component {
         <td key={key}>
           <Button
             variant="outline-primary"
-            onClick={() => this.props.guardarFila(row)}
+            onClick={() => this.props.guardarFila(this.props.edited)}
           >
             Guardar
           </Button>
