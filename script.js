@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const path = __dirname + "/src/reducers/";
 
-const reducers = ["COBROS", "COLONIAS", "DESCUENTOS", "MERCADOS", "OFERENTES", "PUESTOS", "TARIFAS", "USUARIOS"]
+const reducers = ["COBROS", "COLONIAS", "DESCUENTOS", "MERCADOS", "OFERENTES", "PUESTOS", "TARIFAS", "USUARIOS"];
 
 const writeReducer = reducer => {
 
@@ -52,6 +52,11 @@ const writeReducer = reducer => {
             );
             if (idx !== -1) ${plural}s.splice(idx, 1);
             return { ...state, ${plural}: ${plural}s };
+          case "CLEAR_${reducer}":
+            let ${plural}ss = [...state.${plural}];
+            let nuevoIndex = ${plural}ss.findIndex(${single} => ${single}.id${entidad} === "nuevo");
+            if(nuevoIndex !== -1) ${plural}ss.splice(nuevoIndex, 1);
+            return { ...state, ${single}: undefined, ${plural}: ${plural}ss };
           default:
             return { ...state };
         }

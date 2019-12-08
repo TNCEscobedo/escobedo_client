@@ -69,8 +69,8 @@ class Mercados extends Component {
         rows={this.props.mercados}
         edited={this.props.mercado}
         servicio={MercadosService}
-        headers={["Colonia", "Turno", "Inicia", "Termina", "Dia", "Anexo"]}
-        exclude={["idMercado"]}                
+        headers={["Colonia", "Dia", "Turno", "Inicia", "Termina", "Anexo", "Locales"]}
+        exclude={["idMercado", "idColonia",]}                
         idFila="idMercado"
         editable={true}
         schema={schema}

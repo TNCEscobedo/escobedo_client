@@ -12,7 +12,8 @@ import {
   editarFila,
   postFila,
   setPropiedadFila,
-  eliminarFila
+  eliminarFila,
+  clearEdited
 } from "../actions/tableActions";
 import { confirm } from "../actions/modalActions";
 import { connect } from "react-redux";
@@ -24,7 +25,7 @@ class View extends Component {
   }
 
   renderButton() {
-    if (this.props.editable)
+    if (this.props.editable && !this.props.edited)
       return (
         <Button
           className="shadow-sm rounded-pill pt-2 pb-2 font-weight-bold ml-auto"
@@ -35,6 +36,18 @@ class View extends Component {
           block
         >
           Agregar
+        </Button>
+      );
+    else if (this.props.editable)
+      return (
+        <Button
+          className="shadow-sm rounded-pill pt-2 pb-2 font-weight-bold ml-auto"
+          variant="outline-danger"
+          style={{ maxWidth: 300 }}
+          onClick={() => this.props.clearEdited(this.props.reducer)}
+          block
+        >
+          Cancelar
         </Button>
       );
   }
@@ -105,5 +118,6 @@ export default connect(null, {
   postFila,
   setPropiedadFila,
   eliminarFila,
-  confirm
+  confirm,
+  clearEdited
 })(View);

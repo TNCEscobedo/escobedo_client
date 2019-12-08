@@ -75,6 +75,10 @@ export const postFila = (reducer, servicio, fila) => dispatch => {
   }
 };
 
+export const clearEdited = reducer => dispatch => {
+  dispatch({ type: `CLEAR_${reducer}` });
+};
+
 export const eliminarFila = (reducer, servicio, idFila) => dispatch => {
   servicio
     .delete(idFila)
