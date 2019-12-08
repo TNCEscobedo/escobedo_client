@@ -1,13 +1,15 @@
 const INITIAL_STATE = {
   tabs: [
     "cobros",
-    "colonias",
+    "inspectores",    
     "mercados",
     "puestos",
+    "giros",
     "oferentes",
-    "tarifas",
+    "tarifas",    
     "descuentos",
     "usuarios",
+    "colonias",
     "autorizacion"
   ].map(tab => ({
     name: tab,

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import View from "./View";
-import CobrosService from "../services/CobrosService";
-import { getCobrosDia, getCobrosIntervalo } from "../actions/cobrosActions";
+import { getInspectoresDia, getInspectoresIntervalo } from "../actions/inspectoresActions";
 import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
+import InspectoresService from "../services/InspectoresService";
 
-const reducer = "COBROS";
+const reducer = "INSPECTORES";
 
-class Cobros extends Component {
+class Inspectores extends Component {
 
   componentDidMount() {
     this.props.selectTab(reducer.toLowerCase());
@@ -16,11 +16,12 @@ class Cobros extends Component {
   render() {
     return (
       <View
-        title="Cobros"
-        servicio={CobrosService}
+        title="Inspectores"
+        custom={true}
+        servicio={InspectoresService}
         reducer={reducer}
-        idFila="idCobro"
-        exclude={["idCobro"]}
+        idFila="idInspector"
+        exclude={["idInspector"]}
         headers={[
           "Folio",
           "Inspector",
@@ -43,4 +44,4 @@ const mapStateToProps = state => ({
   cobros: state.cobros.cobros
 });
 
-export default connect(mapStateToProps, { selectTab, getCobrosDia, getCobrosIntervalo })(Cobros);
+export default connect(mapStateToProps, { selectTab, getInspectoresDia, getInspectoresIntervalo })(Inspectores);

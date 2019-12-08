@@ -5,7 +5,6 @@ import Col from "react-bootstrap/Col";
 import { Router } from "@reach/router";
 import Mercados from "./views/Mercados";
 import Menu from "./components/menu/Menu";
-import Analiticas from "./views/Analiticas";
 import Cobros from "./views/Cobros";
 import Colonias from "./views/Colonias";
 import Descuentos from "./views/Descuentos";
@@ -13,6 +12,8 @@ import Puestos from "./views/Puestos";
 import Tarifas from "./views/Tarifas";
 import Usuarios from "./views/Usuarios";
 import Oferentes from "./views/Oferentes";
+import Inspectores from "./views/Inspectores";
+import Giros from "./views/Giros";
 
 export default () => (
   <Container fluid={true}>
@@ -23,14 +24,16 @@ export default () => (
       <Col md={9} lg={10} className="pt-5 bg-light">
         <Router>
           <Mercados path="/mercados" />
-          <Analiticas path="/" />
           <Cobros path="/cobros" />
+          <Inspectores path="/inspectores" />
+          <Cobros path="/" />
           <Colonias path="/colonias" />
           <Descuentos path="/descuentos" />
           <Puestos path="/puestos" />
           <Tarifas path="/tarifas" />
           <Usuarios path="/usuarios" />
           <Oferentes path="/oferentes" />
+          <Giros path="/giros" />
         </Router>
       </Col>
     </Row>

@@ -18,9 +18,10 @@ class Tarifas extends Component {
     this.props.selectTab(reducer.toLowerCase());
   }
 
-  render() {
+  render() {    
     return (
       <View
+        idFila="idTarifa"
         title="Tarifas"
         editable={true}
         headers={["Superficie", "Monto"]}
@@ -36,7 +37,7 @@ class Tarifas extends Component {
 
 const mapStateToProps = state => ({
   tarifas: state.tarifas.tarifas,
-  tarifa: state.tarifas.tarifas
+  tarifa: state.tarifas.tarifa
 });
 
 export default connect(mapStateToProps, { selectTab })(Tarifas);

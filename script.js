@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const path = __dirname + "/src/reducers/";
 
-const reducers = ["COBROS", "COLONIAS", "DESCUENTOS", "MERCADOS", "OFERENTES", "PUESTOS", "TARIFAS", "USUARIOS"];
+const reducers = ["COLONIAS", "GIROS", "OFERENTES", "PUESTOS", "TARIFAS", "GIROS"];
 
 const writeReducer = reducer => {
 
@@ -28,7 +28,7 @@ const writeReducer = reducer => {
           case "CREATE_${reducer}":
             return {
               ...state,
-              ${plural}: [...state.${plural}, action.payload],
+              ${plural}: [action.payload, ...state.${plural}],
               ${single}: action.payload
             };
           case "EDIT_${reducer}":
@@ -42,7 +42,7 @@ const writeReducer = reducer => {
             let index = ${plural}.findIndex(
               ${single} => ${single}.id${entidad} === action.payload.id${entidad}
             );
-            if (index === -1) ${plural}.push(action.payload);
+            if (index === -1) ${plural}.unshift(action.payload);
             else ${plural}[index] = action.payload;
             return { ...state, ${plural}, ${single}: undefined };
           case "ELIMINAR_${reducer}":

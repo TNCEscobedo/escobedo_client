@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Section from "../components/common/Section";
 import AdminTable from "../components/table/AdminTable";
 import Spinner from "react-bootstrap/Spinner";
+import Input from "../components/common/Input";
 import {
   getFilas,
   agregarFila,
@@ -19,9 +20,58 @@ import { confirm } from "../actions/modalActions";
 import { connect } from "react-redux";
 
 class View extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ""
+    };
+  }
+
   componentDidMount() {
-    if (this.props.reducer && this.props.servicio)
+    if (this.props.reducer && this.props.servicio && !this.props.custom)
       this.props.getFilas(this.props.reducer, this.props.servicio);
+  }
+
+  searchRows(query) {
+    if (!this.props.rows) return;
+    if (isNaN(query)) query = query.toLowerCase();
+    let searchResult = this.props.rows.filter(row => {
+      let result = Object.keys(row).filter(column => {
+        if (Array.isArray(row[column])) {
+          return row[column].filter(subcolumn => {
+            if (isNaN(subcolumn)) {
+              if (subcolumn.toLowerCase().startsWith(query)) return row;
+            } else if (subcolumn === query) return row;
+            return null;
+          });
+        }
+        if (isNaN(row[column])) {
+          if (row[column].toLowerCase().startsWith(query)) {
+            return row;
+          }
+        } else if (row[column] === query) {
+          return row;
+        } else if (row[column] === Number(query)) {
+          return row;
+        }
+        return null;
+      });
+      return result.length > 0;
+    });
+    this.setState({ searchResult });
+  }
+
+  renderSearch() {
+    if (this.props.search)
+      return (
+        <Container fluid={true}>
+          <Input
+            type="text"
+            value={this.state.query}
+            onChange={query => this.searchRows(query)}
+          />
+        </Container>
+      );
   }
 
   renderButton() {
@@ -101,6 +151,7 @@ class View extends Component {
           </Col>
           <Col xs={4}>{this.renderButton()}</Col>
         </Row>
+        <Row>{this.renderSearch()}</Row>
         <Row>
           <Container fluid={true}>
             <Section>{this.renderTable()}</Section>

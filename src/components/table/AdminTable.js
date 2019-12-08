@@ -27,7 +27,8 @@ class AdminTable extends Component {
   }
 
   renderColumns(row) {
-    return Object.keys(row).map((column, index) => {
+    return this.props.headers.map((column, index) => {
+      column = column.toLowerCase();
       if (this.props.exclude)
         if (this.props.exclude.includes(column)) return null;
       if(this.props.edited)
