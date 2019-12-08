@@ -76,7 +76,7 @@ class Mercados extends Component {
               }))
             : []
         }}
-        rows={this.props.rows}
+        rows={this.props.mercados}
         edited={this.props.mercado}
         servicio={MercadosService}
         headers={[
