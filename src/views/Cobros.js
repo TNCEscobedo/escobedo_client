@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import View from "./View";
 import CobrosService from "../services/CobrosService";
+import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
 const reducer = "COBROS";
 
 class Cobros extends Component {
+
+  componentDidMount() {
+    this.props.selectTab(reducer.toLowerCase());
+  }
+
   render() {
     return (
       <View
@@ -25,6 +31,7 @@ class Cobros extends Component {
           "Mercado"
         ]}
         rows={this.props.cobros}
+        name="cobros"
       />
     );
   }
@@ -34,4 +41,4 @@ const mapStateToProps = state => ({
   cobros: state.cobros.cobros
 });
 
-export default connect(mapStateToProps, null)(Cobros);
+export default connect(mapStateToProps, { selectTab })(Cobros);

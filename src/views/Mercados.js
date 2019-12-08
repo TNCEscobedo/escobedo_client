@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import View from "./View";
 import MercadosService from "../services/MercadosService";
+import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
 const schema = {
@@ -50,6 +51,10 @@ const dias = [
 
 class Mercados extends Component {
 
+  componentDidMount() {
+    this.props.selectTab(reducer.toLowerCase());
+  }
+
   render() {
     return (
       <View
@@ -79,4 +84,4 @@ const mapStateToProps = state => ({
   mercado: state.mercados.mercado
 });
 
-export default connect(mapStateToProps, null)(Mercados);
+export default connect(mapStateToProps, { selectTab })(Mercados);

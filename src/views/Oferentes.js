@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
 const reducer = "OFERENTES";
@@ -12,6 +13,11 @@ const schema = {
 }
 
 class Oferentes extends Component {
+
+  componentDidMount() {
+    this.props.selectTab(reducer.toLowerCase());
+  }
+
   render() {
     return (
       <View
@@ -32,4 +38,4 @@ const mapStateToProps = state => ({
   oferente: state.oferentes.oferente
 });
 
-export default connect(mapStateToProps, null)(Oferentes);
+export default connect(mapStateToProps, { selectTab })(Oferentes);

@@ -1,0 +1,17 @@
+:root {
+    --accent: #3b5a99;
+    --accent-light: #05b7da     
+}
+
+.menu-tab:hover {
+    background-color: var(--accent-light);
+    cursor: pointer;
+}
+
+.selected {
+    background-color: var(--accent-light);
+}
+
+.actions {
+    width: 200px;
+}

@@ -21,8 +21,8 @@ class AdminTable extends Component {
 
   renderRows() {
     if (this.props.rows)
-      return this.props.rows.map(row => (
-        <tr key={row}>{this.renderColumns(row)}</tr>
+      return this.props.rows.map((row, index) => (
+        <tr key={index}>{this.renderColumns(row)}</tr>
       ));
   }
 
@@ -55,7 +55,7 @@ class AdminTable extends Component {
     if(this.props.edited)
     if (this.props.edited[this.props.idFila] === row[this.props.idFila]) {
       return (
-        <td key={key}>
+        <td className="actions" key={key}>
           <Button
             variant="outline-primary"
             onClick={() => this.props.guardarFila(this.props.edited)}
@@ -67,9 +67,10 @@ class AdminTable extends Component {
     }
     if (!this.props.edited)
       return (
-        <td>
+        <td className="actions" key={key}>
           <Button
             variant="outline-primary"
+            className="mr-3"
             onClick={() => this.props.editarFila(row)}
           >
             Editar

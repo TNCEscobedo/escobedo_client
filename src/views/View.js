@@ -15,10 +15,9 @@ import {
 import { connect } from "react-redux";
 
 class View extends Component {
-
   componentDidMount() {
-    if(this.props.reducer && this.props.servicio)
-    this.props.getFilas(this.props.reducer, this.props.servicio);
+    if (this.props.reducer && this.props.servicio)
+      this.props.getFilas(this.props.reducer, this.props.servicio);
   }
 
   renderButton() {
@@ -26,7 +25,9 @@ class View extends Component {
       return (
         <Button
           className="shadow-sm rounded-pill pt-2 pb-2 font-weight-bold ml-auto"
-          onClick={() => this.props.agregarFila(this.props.reducer, this.props.schema)}
+          onClick={() =>
+            this.props.agregarFila(this.props.reducer, this.props.schema)
+          }
           style={{ maxWidth: 300 }}
           block
         >
@@ -43,10 +44,16 @@ class View extends Component {
       exclude,
       headers,
       rows,
-      edited
+      edited,
+      servicio
     } = this.props;
 
-    const actions = this.props.editable ? { editarFila, agregarFila, postFila } : { };
+    const actions = this.props.editable
+      ? {
+          editarFila: fila => this.props.editarFila(reducer, fila),
+          guardarFila: fila => this.props.postFila(reducer, servicio, fila)
+        }
+      : {};
 
     return (
       <Container fluid={true}>
@@ -79,4 +86,10 @@ class View extends Component {
   }
 }
 
-export default connect(null, { getFilas, editarFila, agregarFila, postFila, setPropiedadFila })(View);
+export default connect(null, {
+  getFilas,
+  editarFila,
+  agregarFila,
+  postFila,
+  setPropiedadFila
+})(View);

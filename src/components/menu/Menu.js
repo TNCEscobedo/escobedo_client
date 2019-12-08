@@ -6,7 +6,13 @@ import MenuTab from "./MenuTab";
 const Menu = props => {
   let tabs = [];
   if (props.tabs)
-    tabs = props.tabs.map((tab, index) => <MenuTab key={index} tab={tab} />);
+    tabs = props.tabs.map((tab, index) => (
+      <MenuTab
+        key={index}
+        tab={tab}
+        selected={props.selected === tab.name}
+      />
+    ));
   return (
     <Container fluid={true}>
       <h2 className="mb-5">{props.title}</h2>
@@ -16,7 +22,8 @@ const Menu = props => {
 };
 
 const mapStateToProps = state => ({
-  tabs: state.menu.tabs
+  tabs: state.menu.tabs,
+  selected: state.menu.selected
 });
 
 export default connect(mapStateToProps, null)(Menu);

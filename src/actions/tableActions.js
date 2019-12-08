@@ -1,8 +1,7 @@
 export const getFilas = (reducer, servicio) => dispatch => {
-  console.log(reducer, servicio)
   servicio
     .get()
-    .then(res => {
+    .then(res => {      
       dispatch({ type: `${reducer}_RECIBIDOS`, payload: res.data });
     })
     .catch(error => {
@@ -15,7 +14,9 @@ export const agregarFila = (reducer, elemento) => dispatch => {
   dispatch({ type: `CREATE_${reducer}`, payload: elemento });
 };
 
-export const editarFila = (reducer, fila) => dispatch => {};
+export const editarFila = (reducer, fila) => dispatch => {
+  dispatch({ type: `EDIT_${reducer}`, payload: fila });
+};
 
 export const setPropiedadFila = (reducer, key, value) => dispatch => {    
   dispatch({ type: `SET_PROPIEDAD_${reducer}`, payload: { key, value } });
