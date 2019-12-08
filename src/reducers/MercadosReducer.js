@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) mercados.push(action.payload);
       else mercados[index] = action.payload;
-      return { ...state, mercados };
+      return { ...state, mercados, mercado: undefined };
     case "ELIMINAR_MERCADOS":
       let mercadoss = [...state.mercados];
       let idx = mercadoss.findIndex(

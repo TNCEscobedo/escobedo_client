@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) cobros.push(action.payload);
       else cobros[index] = action.payload;
-      return { ...state, cobros };
+      return { ...state, cobros, cobro: undefined };
     case "ELIMINAR_COBROS":
       let cobross = [...state.cobros];
       let idx = cobross.findIndex(cobro => cobro.idCobro === action.payload);

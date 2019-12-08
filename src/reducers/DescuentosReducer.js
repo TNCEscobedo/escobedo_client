@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) descuentos.push(action.payload);
       else descuentos[index] = action.payload;
-      return { ...state, descuentos };
+      return { ...state, descuentos, descuento: undefined };
     case "ELIMINAR_DESCUENTOS":
       let descuentoss = [...state.descuentos];
       let idx = descuentoss.findIndex(

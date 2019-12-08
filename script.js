@@ -44,7 +44,7 @@ const writeReducer = reducer => {
             );
             if (index === -1) ${plural}.push(action.payload);
             else ${plural}[index] = action.payload;
-            return { ...state, ${plural} };
+            return { ...state, ${plural}, ${single}: undefined };
           case "ELIMINAR_${reducer}":
             let ${plural}s = [...state.${plural}];
             let idx = ${plural}s.findIndex(

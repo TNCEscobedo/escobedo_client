@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) oferentes.push(action.payload);
       else oferentes[index] = action.payload;
-      return { ...state, oferentes };
+      return { ...state, oferentes, oferente: undefined };
     case "ELIMINAR_OFERENTES":
       let oferentess = [...state.oferentes];
       let idx = oferentess.findIndex(

@@ -59,6 +59,7 @@ class AdminTable extends Component {
           <Button
             variant="outline-primary"
             onClick={() => this.props.guardarFila(this.props.edited)}
+            block
           >
             Guardar
           </Button>
@@ -73,16 +74,17 @@ class AdminTable extends Component {
             className="mr-3"
             onClick={() => this.props.editarFila(row)}
           >
-            Editar
+            <i className="fa fa-edit"></i>
           </Button>
           <Button
             variant="outline-danger"
             onClick={() => this.props.eliminarFila(row)}
           >
-            Eliminar
+            <i className="fa fa-trash"></i>
           </Button>
         </td>
       );
+      return <td key={key} />;
   }
 
   render() {

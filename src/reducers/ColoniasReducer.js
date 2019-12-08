@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) colonias.push(action.payload);
       else colonias[index] = action.payload;
-      return { ...state, colonias };
+      return { ...state, colonias, colonia: undefined };
     case "ELIMINAR_COLONIAS":
       let coloniass = [...state.colonias];
       let idx = coloniass.findIndex(

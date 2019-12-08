@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) usuarios.push(action.payload);
       else usuarios[index] = action.payload;
-      return { ...state, usuarios };
+      return { ...state, usuarios, usuario: undefined };
     case "ELIMINAR_USUARIOS":
       let usuarioss = [...state.usuarios];
       let idx = usuarioss.findIndex(

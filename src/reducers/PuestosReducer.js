@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) puestos.push(action.payload);
       else puestos[index] = action.payload;
-      return { ...state, puestos };
+      return { ...state, puestos, puesto: undefined };
     case "ELIMINAR_PUESTOS":
       let puestoss = [...state.puestos];
       let idx = puestoss.findIndex(

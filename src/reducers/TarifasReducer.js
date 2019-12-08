@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (index === -1) tarifas.push(action.payload);
       else tarifas[index] = action.payload;
-      return { ...state, tarifas };
+      return { ...state, tarifas, tarifa: undefined };
     case "ELIMINAR_TARIFAS":
       let tarifass = [...state.tarifas];
       let idx = tarifass.findIndex(
