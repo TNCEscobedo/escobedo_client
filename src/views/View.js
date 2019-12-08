@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Section from "../components/common/Section";
 import AdminTable from "../components/table/AdminTable";
+import Spinner from "react-bootstrap/Spinner";
 import {
   getFilas,
   agregarFila,
@@ -38,15 +39,16 @@ class View extends Component {
       );
   }
 
-  render() {
+  renderTable() {
+    if (!this.props.rows) return <Spinner animation="border" variant="dark" />;
     const {
-      reducer,
-      options,
-      idFila,
       exclude,
       headers,
       rows,
       edited,
+      options,
+      reducer,
+      idFila,
       servicio
     } = this.props;
 
@@ -54,10 +56,30 @@ class View extends Component {
       ? {
           editarFila: fila => this.props.editarFila(reducer, fila),
           guardarFila: fila => this.props.postFila(reducer, servicio, fila),
-          eliminarFila: fila => this.props.confirm(`¿Estás seguro que deseas eliminar ${fila.nombre}?`, () => this.props.eliminarFila(reducer, servicio, fila[idFila]))
+          eliminarFila: fila =>
+            this.props.confirm(
+              `¿Estás seguro que deseas eliminar ${fila.nombre}?`,
+              () => this.props.eliminarFila(reducer, servicio, fila[idFila])
+            )
         }
       : {};
+    return (
+      <AdminTable
+        idFila={idFila}
+        exclude={exclude}
+        headers={headers}
+        options={options}
+        rows={rows}
+        edited={edited}
+        onChange={(key, value) =>
+          this.props.setPropiedadFila(reducer, key, value)
+        }
+        {...actions}
+      />
+    );
+  }
 
+  render() {
     return (
       <Container fluid={true}>
         <Row>
@@ -68,20 +90,7 @@ class View extends Component {
         </Row>
         <Row>
           <Container fluid={true}>
-            <Section>
-              <AdminTable
-                idFila={idFila}
-                exclude={exclude}
-                headers={headers}
-                options={options}
-                rows={rows}
-                edited={edited}
-                onChange={(key, value) =>
-                  this.props.setPropiedadFila(reducer, key, value)
-                }
-                {...actions}
-              />
-            </Section>
+            <Section>{this.renderTable()}</Section>
           </Container>
         </Row>
       </Container>
