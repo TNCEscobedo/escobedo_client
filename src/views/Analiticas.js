@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import moment from "moment";
 import Section from "../components/common/Section";
 import ReactApexChart from "react-apexcharts";
+import Spinner from "react-bootstrap/Spinner";
 import { clearFilas } from "../actions/tableActions";
 import { selectTab } from "../actions/menuActions";
 import { getCobrosIntervalo } from "../actions/cobrosActions";
@@ -18,6 +19,7 @@ class Analiticas extends Component {
     fecha_fin = fecha_fin.toISOString().substring(0, 10);
     this.props.getCobrosIntervalo(fecha_inicio, fecha_fin);
     this.props.getInspectoresIntervalo(fecha_inicio, fecha_fin);
+    this.props.selectTab("analiticas");
   }
 
   componentWillUnmount() {
@@ -43,6 +45,7 @@ class Analiticas extends Component {
     if (!this.props.cobros) return [];
     let cobros = [];
     let fecha = moment().subtract(7, "days");
+    if(!this.props.cobros[0].fecha) return [];
     for (let i = 0; i < 7; i++) {
       let cobrosFecha = this.props.cobros.filter(
         cobro =>
@@ -64,6 +67,7 @@ class Analiticas extends Component {
     if (!this.props.inspectores) return [];
     let inspectores = [];
     let fecha = moment().subtract(7, "days");
+    if(!this.props.inspectores[0].fecha) return []
     for (let i = 0; i < 7; i++) {
       let inspectoresFecha = this.props.inspectores.filter(
         inspector =>
@@ -90,6 +94,7 @@ class Analiticas extends Component {
     let nombres = [
       ...new Set(this.props.inspectores.map(inspector => inspector.inspector))
     ];
+    if(!this.props.inspectores[0].fecha) return []
     nombres.forEach(nombre => {
       let inspector = this.props.inspectores.filter(
         inspector => inspector.inspector === nombre
@@ -102,7 +107,6 @@ class Analiticas extends Component {
   }
 
   render() {
-    if (this.props.cobros) this.procesarCobros();
     return (
       <Container fluid={true}>
         <Container>
@@ -115,7 +119,7 @@ class Analiticas extends Component {
             <Container fluid={true}>
               <h3 className="mb-3">Ingresos Diarios Totales</h3>
               <Section>
-                {this.renderGrafica(this.procesarCobros(), "Ingresos")}
+                {this.props.cobros ? this.renderGrafica(this.procesarCobros(), "Ingresos") : <Spinner animation="border" variant="dark" />}
               </Section>
             </Container>
           </Row>
@@ -123,10 +127,10 @@ class Analiticas extends Component {
             <Container fluid={true}>
               <h3 className="mb-3">Folios Diarios Totales</h3>
               <Section>
-                {this.renderGrafica(
+                {this.props.inspectores ? this.renderGrafica(
                   this.procesarFoliosInspectores(),
                   "Inspectores"
-                )}
+                ) : <Spinner animation="border" variant="dark" />}
               </Section>
             </Container>
           </Row>
@@ -134,7 +138,7 @@ class Analiticas extends Component {
             <Container fluid={true}>
               <h3 className="mb-3">Folios por Inspector</h3>
               <Section>
-                {this.renderGrafica(
+                {this.props.inspectores ? this.renderGrafica(
                   this.procesarInspectores(),
                   "Inspectores",
                   "bar",
@@ -147,7 +151,7 @@ class Analiticas extends Component {
                         : []
                     )
                   ]
-                )}
+                ) : <Spinner animation="border" variant="dark" />}
               </Section>
             </Container>
           </Row>

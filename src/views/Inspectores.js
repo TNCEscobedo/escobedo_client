@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import View from "./View";
 import Input from "../components/common/Input";
+import { clearFilas } from "../actions/tableActions";
 import {
   getInspectoresDia,
   getInspectoresIntervalo
@@ -29,11 +30,16 @@ class Inspectores extends Component {
         .toISOString()
         .substring(0, 10)
     });
+    this.props.selectTab(reducer.toLowerCase());
   }
 
   componentDidUpdate(prevState, prevProps) {
     if (prevState.fecha !== this.state.fecha)
       this.props.getInspectoresDia(this.state.fecha);
+  }
+
+  componentWillUnmount() {
+    this.props.clearFilas("INSPECTORES");
   }
 
   handleChange(key, value) {
@@ -58,7 +64,7 @@ class Inspectores extends Component {
           "Deudores"
         ]}
         prefixes={{
-          recolectado: "$",
+          recaudado: "$",
           pronosticado: "$"
         }}
         rows={this.props.inspectores}
@@ -82,5 +88,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   selectTab,
   getInspectoresDia,
-  getInspectoresIntervalo
+  getInspectoresIntervalo,
+  clearFilas
 })(Inspectores);
