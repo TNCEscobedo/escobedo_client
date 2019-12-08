@@ -9,7 +9,6 @@ import Analiticas from "./views/Analiticas";
 import Cobros from "./views/Cobros";
 import Colonias from "./views/Colonias";
 import Descuentos from "./views/Descuentos";
-import Inspectores from "./views/Inspectores";
 import Puestos from "./views/Puestos";
 import Tarifas from "./views/Tarifas";
 import Usuarios from "./views/Usuarios";
@@ -28,7 +27,6 @@ export default () => (
           <Cobros path="/cobros" />
           <Colonias path="/colonias" />
           <Descuentos path="/descuentos" />
-          <Inspectores path="/inspectores" />
           <Puestos path="/puestos" />
           <Tarifas path="/tarifas" />
           <Usuarios path="/usuarios" />

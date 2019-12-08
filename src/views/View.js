@@ -26,7 +26,7 @@ class View extends Component {
       return (
         <Button
           className="shadow-sm rounded-pill pt-2 pb-2 font-weight-bold ml-auto"
-          onClick={this.props.onClick}
+          onClick={() => this.props.agregarFila(this.props.reducer, this.props.schema)}
           style={{ maxWidth: 300 }}
           block
         >

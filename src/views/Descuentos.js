@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import View from "./View";
 import { connect } from "react-redux";
 
+const reducer = "DESCUENTOS"
+
+const schema = {
+    idDescuento: "nuevo",
+    razon: "",
+    oferente: "",
+}
+
 class Descuentos extends Component {
   render() {
     return (
@@ -10,6 +18,9 @@ class Descuentos extends Component {
         editable={true}
         headers={["Oferente", "Razon", "Autorizado", "Vigente"]}
         rows={this.props.descuentos}
+        edited={this.props.descuento}
+        reducer={reducer}
+        schema={schema}
       />
     );
   }

@@ -68,6 +68,7 @@ class Mercados extends Component {
         exclude={["idMercado"]}                
         idFila="idMercado"
         editable={true}
+        schema={schema}
       />
     );
   }
