@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     "colonias",
     "mercados",
     "puestos",
-    "personas",
+    "oferentes",
     "tarifas",
     "descuentos",
     "inspectores",

@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import View from "./View";
+import { connect } from "react-redux";
 
 class Puestos extends Component {
     render() {
         return (
-            <View title="Puestos">
-
-            </View>
+            <View title="Puestos" editable={true} headers={["Oferente", "Giro", "Tarifa"]} />
         )
     }
 }
 
-export default Puestos;
+const mapStateToProps = state => ({
+    puestos: state.puestos.puestos
+});
+
+export default connect(mapStateToProps, null)(Puestos);

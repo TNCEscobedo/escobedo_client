@@ -4,11 +4,11 @@ import ColoniasReducer from "./ColoniasReducer";
 import DescuentosReducer from "./DescuentosReducer";
 import InspectoresReducer from "./InspectoresReducer";
 import MercadosReducer from "./MercadosReducer";
-import PersonasReducer from "./PersonasReducer";
 import PuestosReducer from "./PuestosReducer";
 import TarifasReducer from "./TarifasReducer";
 import UsuariosReducer from "./UsuariosReducer";
 import MenuReducer from "./MenuReducer";
+import OferentesReducer from "./OferentesReducer";
 
 export default combineReducers({
     cobros: CobrosReducer,
@@ -16,7 +16,7 @@ export default combineReducers({
     descuentos: DescuentosReducer,
     inspectores: InspectoresReducer,
     mercados: MercadosReducer,
-    personas: PersonasReducer,
+    oferentes: OferentesReducer,
     puestos: PuestosReducer,
     tarifas: TarifasReducer,
     usuarios: UsuariosReducer,

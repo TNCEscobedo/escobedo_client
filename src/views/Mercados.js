@@ -1,14 +1,5 @@
 import React, { Component } from "react";
 import View from "./View";
-import Section from "../components/common/Section";
-import AdminTable from "../components/table/AdminTable";
-import {
-  getFilas,
-  agregarFila,
-  editarFia,
-  postFila,
-  setPropiedadFila
-} from "../actions/tableActions";
 import MercadosService from "../services/MercadosService";
 import { connect } from "react-redux";
 
@@ -58,9 +49,6 @@ const dias = [
 ];
 
 class Mercados extends Component {
-  componentDidMount() {
-    this.props.getFilas(reducer, MercadosService);
-  }
 
   render() {
     return (
@@ -68,30 +56,19 @@ class Mercados extends Component {
         title="Mercados"
         onClick={() => this.props.agregarFila(reducer, schema)}
         buttonTitle="Agregar"
-      >
-        <Section>
-          <AdminTable
-            idFila={"idMercado"}
-            exclude={["idMercado"]}
-            headers={["Colonia", "Turno", "Inicia", "Termina", "Dia", "Anexo"]}
-            options={{
-              colonia: [],
-              /*this.props.colonias.map(colonia => ({
-                name: colonia.nombre,
-                value: colonia.idColonia
-              })),*/
-              turno: turnos,
-              dia: dias
-            }}
-            rows={this.props.mercados}
-            edited={this.props.mercado}
-            onChange={(key, value) =>
-              this.props.setPropiedadFila(reducer, key, value)
-            }
-            guardarFila={mercado => this.props.postFila(reducer, MercadosService, mercado)}
-          />
-        </Section>
-      </View>
+        options={{
+          dia: dias,
+          turno: turnos,
+          colonias: [],
+        }}
+        rows={this.props.mercados}
+        edited={this.props.mercado}
+        servicio={MercadosService}
+        headers={["Colonia", "Turno", "Inicia", "Termina", "Dia", "Anexo"]}
+        exclude={["idMercado"]}                
+        idFila="idMercado"
+        editable={true}
+      />
     );
   }
 }
@@ -101,10 +78,4 @@ const mapStateToProps = state => ({
   mercado: state.mercados.mercado
 });
 
-export default connect(mapStateToProps, {
-  getFilas,
-  agregarFila,
-  editarFia,
-  postFila,
-  setPropiedadFila
-})(Mercados);
+export default connect(mapStateToProps, null)(Mercados);

@@ -14,7 +14,7 @@ export const agregarFila = (reducer, elemento) => dispatch => {
   dispatch({ type: `CREATE_${reducer}`, payload: elemento });
 };
 
-export const editarFia = (reducer, fila) => dispatch => {};
+export const editarFila = (reducer, fila) => dispatch => {};
 
 export const setPropiedadFila = (reducer, key, value) => dispatch => {    
   dispatch({ type: `SET_PROPIEDAD_${reducer}`, payload: { key, value } });
