@@ -1,11 +1,12 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
+import MenuTab from "./MenuTab";
 
 const Menu = props => {
   let tabs = [];
   if (props.tabs)
-    tabs = props.tabs.map((tab, index) => <p key={index} className="h4 mb-4">{tab.title}</p>);
+    tabs = props.tabs.map((tab, index) => <MenuTab key={index} tab={tab} />);
   return (
     <Container fluid={true}>
       <h2 className="mb-5">{props.title}</h2>
