@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import ColoniasService from "../services/ColoniasService";
 import { connect } from "react-redux";
 
 const reducer = "COLONIAS";
@@ -20,6 +21,7 @@ class Colonias extends Component {
         editable={true}
         reducer={reducer}
         schema={schema}
+        servicio={ColoniasService}
       />
     );
   }

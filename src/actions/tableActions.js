@@ -1,4 +1,5 @@
 export const getFilas = (reducer, servicio) => dispatch => {
+  console.log(reducer, servicio)
   servicio
     .get()
     .then(res => {

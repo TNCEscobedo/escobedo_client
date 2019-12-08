@@ -30,6 +30,7 @@ class AdminTable extends Component {
     return Object.keys(row).map((column, index) => {
       if (this.props.exclude)
         if (this.props.exclude.includes(column)) return null;
+      if(this.props.edited)
       if (this.props.edited[this.props.idFila] === row[this.props.idFila]) {
         let options;
         if (this.props.options) options = this.props.options[column];
