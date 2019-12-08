@@ -33,20 +33,13 @@ class View extends Component {
   }
 
   searchRows(query) {
-    if (!this.props.rows) return;
+    this.setState({ query });
+    if (!this.props.rows) return;        
     if (isNaN(query)) query = query.toLowerCase();
     let searchResult = this.props.rows.filter(row => {
       let result = Object.keys(row).filter(column => {
-        if (Array.isArray(row[column])) {
-          return row[column].filter(subcolumn => {
-            if (isNaN(subcolumn)) {
-              if (subcolumn.toLowerCase().startsWith(query)) return row;
-            } else if (subcolumn === query) return row;
-            return null;
-          });
-        }
-        if (isNaN(row[column])) {
-          if (row[column].toLowerCase().startsWith(query)) {
+        if (isNaN(row[column])) {             
+          if (row[column].toLowerCase().startsWith(query)) {            
             return row;
           }
         } else if (row[column] === query) {
@@ -67,8 +60,9 @@ class View extends Component {
         <Container fluid={true}>
           <Input
             type="text"
+            placeholder="Buscar"
             value={this.state.query}
-            onChange={query => this.searchRows(query)}
+            onChange={(key, query) => this.searchRows(query)}
           />
         </Container>
       );
@@ -107,13 +101,17 @@ class View extends Component {
     const {
       exclude,
       headers,
-      rows,
       edited,
       options,
       reducer,
       idFila,
-      servicio
+      servicio,
+      editExcluded,
+      editable
     } = this.props;
+
+    let rows = this.props.rows;    
+    if(this.state.searchResult) rows = this.state.searchResult;
 
     const actions = this.props.editable
       ? {
@@ -125,18 +123,21 @@ class View extends Component {
               () => this.props.eliminarFila(reducer, servicio, fila[idFila])
             )
         }
-      : {};
+      : {};    
     return (
       <AdminTable
+        editExcluded={editExcluded}
         idFila={idFila}
         exclude={exclude}
         headers={headers}
         options={options}
         rows={rows}
         edited={edited}
+        editable={editable}
         onChange={(key, value) =>
           this.props.setPropiedadFila(reducer, key, value)
         }
+        prefixes={this.props.prefixes}
         {...actions}
       />
     );

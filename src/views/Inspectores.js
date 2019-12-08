@@ -4,6 +4,7 @@ import { getInspectoresDia, getInspectoresIntervalo } from "../actions/inspector
 import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 import InspectoresService from "../services/InspectoresService";
+import moment from "moment";
 
 const reducer = "INSPECTORES";
 
@@ -11,6 +12,8 @@ class Inspectores extends Component {
 
   componentDidMount() {
     this.props.selectTab(reducer.toLowerCase());
+    const fecha = moment().toISOString().substring(0,10);
+    this.props.getInspectoresDia(fecha);
   }
 
   render() {
@@ -19,29 +22,30 @@ class Inspectores extends Component {
         title="Inspectores"
         custom={true}
         servicio={InspectoresService}
-        reducer={reducer}
+        reducer={reducer}      
         idFila="idInspector"
         exclude={["idInspector"]}
         headers={[
-          "Folio",
           "Inspector",
-          "Monto",
-          "Puesto",
-          "Oferente",
-          "Pagado",
-          "Tarifa",
-          "Mercado"
+          "Mercado",
+          "Folios",
+          "Recaudado",
+          "Pronosticado",
+          "Deudores"
         ]}
-        rows={this.props.cobros}
-        name="cobros"
-        search={true}
+        prefixes={{
+          recolectado: "$",
+          pronosticado: "$"
+        }}
+        rows={this.props.inspectores}        
+        search={true}        
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  cobros: state.cobros.cobros
+  inspectores: state.inspectores.inspectores
 });
 
 export default connect(mapStateToProps, { selectTab, getInspectoresDia, getInspectoresIntervalo })(Inspectores);

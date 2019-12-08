@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import UsuariosService from "../services/UsuariosService";
 import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
@@ -8,13 +9,40 @@ const reducer = "USUARIOS";
 const schema = {
   idUsuario: "nuevo",
   correo: "",
-  telefono: ""
-}
+  uid: "",
+  tipo: ""
+};
+
+const tipos = [
+  {
+    name: "Regular",
+    value: 1
+  },
+  {
+    name: "Admin",
+    value: 2
+  },
+  {
+    name: "Inspector",
+    value: 3
+  },
+  {
+    name: "Autoriza",
+    value: 4
+  }
+];
 
 class Usuarios extends Component {
-
   componentDidMount() {
     this.props.selectTab(reducer.toLowerCase());
+  }
+
+  renderUsuarios() {    
+    if (this.props.usuarios)
+      return this.props.usuarios.map(usuario => ({
+        ...usuario,
+        tipo: parseInt(usuario.tipo) === 1 ? "Regular" : usuario.tipo === 2 ? "Admin" : usuario.tipo === 3 ? "Inspector" : "Autoriza"
+      }));
   }
 
   render() {
@@ -22,11 +50,17 @@ class Usuarios extends Component {
       <View
         title="Usuarios"
         editable={true}
-        headers={["Nombre", "Correo Electrónico", "Teléfono"]}
-        rows={this.props.usuarios}
+        idFila="idUsuario"
+        headers={["Nombre", "Correo", "Tipo"]}
+        exclude={["idUsuario", "uid"]}
+        rows={this.renderUsuarios()}
         edited={this.props.usuario}
         schema={schema}
         reducer={reducer}
+        servicio={UsuariosService}
+        options={{
+          tipo: tipos
+        }}
       />
     );
   }

@@ -9,5 +9,5 @@ export default {
   delete: idCobro => api.delete(`${route}/${idCobro}`),
   getCobrosFecha: fecha => api.get(`${route}?fecha=${fecha}`),
   getCobrosIntervalo: (fecha_inicio, fecha_fin) =>
-    api.get(`${route}?fecha_inicio=${fecha_inicio}&fecha_fin=${fecha_fin}`)
+    api.get(`${route}?fechaInicio=${fecha_inicio}&fechaFin=${fecha_fin}`)
 };

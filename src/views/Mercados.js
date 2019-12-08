@@ -76,6 +76,7 @@ class Mercados extends Component {
               }))
             : []
         }}
+        editExcluded={["locales"]}
         rows={this.props.mercados}
         edited={this.props.mercado}
         servicio={MercadosService}

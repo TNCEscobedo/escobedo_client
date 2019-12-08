@@ -8,9 +8,10 @@ export default class Input extends Component {
   }
 
   componentDidMount() {
-    if(this.props.as === "select" && (!this.props.value || this.props.value === ""))
+    if(this.props.as === "select" && (!this.props.value || this.props.value === "")) {
       if(this.props.options[0])
-        this.props.onChange(this.props.name, this.props.options[0].value);
+      this.props.onChange(this.props.name, this.props.options[0].value);
+    }      
   }
 
   handleChange(e) {
@@ -55,6 +56,7 @@ export default class Input extends Component {
     return (
       <Form.Control
         type={this.props.type}
+        placeholder={this.props.placeholder}
         value={this.props.value}
         name={this.props.name}
         onChange={this.handleChange}

@@ -4,7 +4,6 @@ export const getFilas = (reducer, servicio) => dispatch => {
   servicio
     .get()
     .then(res => {
-      console.log(res.data);
       dispatch({ type: `${reducer}_RECIBIDOS`, payload: res.data });
     })
     .catch(error => {
@@ -30,10 +29,33 @@ export const setPropiedadFila = (reducer, key, value) => dispatch => {
   dispatch({ type: `SET_PROPIEDAD_${reducer}`, payload: { key, value } });
 };
 
-export const postFila = (reducer, servicio, fila) => dispatch => {    
+const tipos = [
+  {
+    name: "Regular",
+    value: 1
+  },
+  {
+    name: "Admin",
+    value: 2
+  },
+  {
+    name: "Inspector",
+    value: 3
+  },
+  {
+    name: "Autoriza",
+    value: 4
+  }
+];
+
+export const postFila = (reducer, servicio, fila) => dispatch => {
   let id = `id${reducer[0]}${reducer
     .substring(1, reducer.length - 1)
     .toLowerCase()}`;
+  if (reducer === "USUARIOS")
+    fila.tipo = tipos.find(
+      tipo => tipo.value === parseInt(fila.tipo) || tipo.name === fila.tipo
+    ).value;
   if (isNaN(fila[id])) {
     servicio
       .post(fila)

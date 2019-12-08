@@ -14,7 +14,7 @@ class Cobros extends Component {
   }
 
   render() {
-    return (
+      return (
       <View
         title="Cobros"
         servicio={CobrosService}

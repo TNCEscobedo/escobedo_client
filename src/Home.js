@@ -14,19 +14,27 @@ import Usuarios from "./views/Usuarios";
 import Oferentes from "./views/Oferentes";
 import Inspectores from "./views/Inspectores";
 import Giros from "./views/Giros";
+import Analiticas from "./views/Analiticas";
 
 export default () => (
   <Container fluid={true}>
     <Row>
-      <Col md={3} lg={2} className="text-white pt-5" style={{ minHeight: "100vh", backgroundColor: "#3b5a99" }}>
-          <Menu title="Mercash" />
+      <Col
+        md={3}
+        lg={2}
+        className="text-white pt-5"
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#3b5a99"
+        }}
+      >
+        <Menu title="Mercash" />
       </Col>
       <Col md={9} lg={10} className="pt-5 bg-light">
         <Router>
           <Mercados path="/mercados" />
           <Cobros path="/cobros" />
           <Inspectores path="/inspectores" />
-          <Cobros path="/" />
           <Colonias path="/colonias" />
           <Descuentos path="/descuentos" />
           <Puestos path="/puestos" />
@@ -34,6 +42,7 @@ export default () => (
           <Usuarios path="/usuarios" />
           <Oferentes path="/oferentes" />
           <Giros path="/giros" />
+          <Analiticas path="/" />
         </Router>
       </Col>
     </Row>

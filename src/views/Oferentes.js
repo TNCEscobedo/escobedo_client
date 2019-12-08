@@ -23,13 +23,18 @@ class Oferentes extends Component {
     return (
       <View
         title="Oferentes"        
-        headers={["Nombre", "Colonia", "Telefono"]}
+        headers={["Nombre", "Colonia", "Telefono", "Saldo"]}
         rows={this.props.oferentes}
         edited={this.props.oferente}
         editable={true}
         schema={schema}
         reducer={reducer}
         servicio={OferentesService}
+        editExcluded={["Saldo"]}
+        prefixes={{
+          saldo: "$"
+        }}
+        search={true}
       />
     );
   }

@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const path = __dirname + "/src/reducers/";
 
-const reducers = ["COLONIAS", "GIROS", "OFERENTES", "PUESTOS", "TARIFAS", "GIROS"];
+const reducers = ["INSPECTORES"];
 
 const writeReducer = reducer => {
 

@@ -10,6 +10,7 @@ import MenuReducer from "./MenuReducer";
 import OferentesReducer from "./OferentesReducer";
 import ModalReducer from "./ModalReducer";
 import GirosReducer from "./GirosReducer";
+import InspectoresReducer from "./InspectoresReducer";
 
 export default combineReducers({
     cobros: CobrosReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
     usuarios: UsuariosReducer,
     menu: MenuReducer,
     modal: ModalReducer,
-    giros: GirosReducer
+    giros: GirosReducer,
+    inspectores: InspectoresReducer
 })
