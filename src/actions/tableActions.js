@@ -101,6 +101,10 @@ export const clearEdited = reducer => dispatch => {
   dispatch({ type: `CLEAR_${reducer}` });
 };
 
+export const clearFilas = reducer => dispatch => {
+  dispatch({ type: `CLEAR_ALL_${reducer}` });
+};
+
 export const eliminarFila = (reducer, servicio, idFila) => dispatch => {
   servicio
     .delete(idFila)

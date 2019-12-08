@@ -41,6 +41,8 @@ export default (state = INITIAL_STATE, action) => {
       );
       if (nuevoIndex !== -1) inspectoresss.splice(nuevoIndex, 1);
       return { ...state, inspectore: undefined, inspectores: inspectoresss };
+    case "CLEAR_ALL_INSPECTORES":
+      return { ...INITIAL_STATE };
     default:
       return { ...state };
   }

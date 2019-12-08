@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import moment from "moment";
 import Section from "../components/common/Section";
 import ReactApexChart from "react-apexcharts";
+import { clearFilas } from "../actions/tableActions";
 import { selectTab } from "../actions/menuActions";
 import { getCobrosIntervalo } from "../actions/cobrosActions";
 import { getInspectoresIntervalo } from "../actions/inspectoresActions";
@@ -17,6 +18,11 @@ class Analiticas extends Component {
     fecha_fin = fecha_fin.toISOString().substring(0, 10);
     this.props.getCobrosIntervalo(fecha_inicio, fecha_fin);
     this.props.getInspectoresIntervalo(fecha_inicio, fecha_fin);
+  }
+
+  componentWillUnmount() {
+    this.props.clearFilas("INSPECTORES");
+    this.props.clearFilas("COBROS");
   }
 
   renderGrafica(data, name, type, labels) {
@@ -159,5 +165,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getCobrosIntervalo,
   getInspectoresIntervalo,
-  selectTab
+  selectTab,
+  clearFilas
 })(Analiticas);

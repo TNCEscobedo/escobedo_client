@@ -10,7 +10,6 @@ const INITIAL_STATE = {
     "descuentos",
     "usuarios",
     "colonias",
-    "autorizacion"
   ].map(tab => ({
     name: tab,
     title: `${tab[0].toUpperCase()}${tab.substring(1, tab.length)}`,

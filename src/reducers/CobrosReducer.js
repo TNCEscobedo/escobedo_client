@@ -37,6 +37,8 @@ export default (state = INITIAL_STATE, action) => {
       let nuevoIndex = cobrosss.findIndex(cobro => cobro.idCobro === "nuevo");
       if (nuevoIndex !== -1) cobrosss.splice(nuevoIndex, 1);
       return { ...state, cobro: undefined, cobros: cobrosss };
+    case "CLEAR_ALL_COBROS":
+      return { ...INITIAL_STATE };
     default:
       return { ...state };
   }

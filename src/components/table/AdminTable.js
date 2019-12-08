@@ -74,7 +74,7 @@ class AdminTable extends Component {
                 ? this.props.prefixes[column] + " "
                 : ""
               : ""}
-            {row[column]}
+            {typeof row[column] === "boolean" ? row[column] ? <i className="fa fa-check"></i> : "" : row[column]}
           </td>
         );
       })
