@@ -74,6 +74,7 @@ class Mercados extends Component {
         idFila="idMercado"
         editable={true}
         schema={schema}
+        reducer={reducer}
       />
     );
   }

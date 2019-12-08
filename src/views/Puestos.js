@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import PuestosService from "../services/PuestosService";
 import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
@@ -32,6 +33,7 @@ class Puestos extends Component {
         }}        
         schema={schema}
         reducer={reducer}
+        servicio={PuestosService}
       />
     );
   }

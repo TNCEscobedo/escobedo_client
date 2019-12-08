@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import OferentesService from "../services/OferentesService";
 import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
@@ -28,6 +29,7 @@ class Oferentes extends Component {
         editable={true}
         schema={schema}
         reducer={reducer}
+        servicio={OferentesService}
       />
     );
   }

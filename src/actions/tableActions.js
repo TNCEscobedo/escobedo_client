@@ -4,6 +4,7 @@ export const getFilas = (reducer, servicio) => dispatch => {
   servicio
     .get()
     .then(res => {
+      console.log(res.data);
       dispatch({ type: `${reducer}_RECIBIDOS`, payload: res.data });
     })
     .catch(error => {

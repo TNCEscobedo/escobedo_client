@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import TarifasService from "../services/TarifasService";
 import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
@@ -27,6 +28,7 @@ class Tarifas extends Component {
         edited={this.props.tarifa}
         schema={schema}
         reducer={reducer}
+        servicio={TarifasService}
       />
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import DescuentosService from "../services/DescuentosService";
 import { selectTab } from "../actions/menuActions";
 import { connect } from "react-redux";
 
@@ -27,6 +28,7 @@ class Descuentos extends Component {
         edited={this.props.descuento}
         reducer={reducer}
         schema={schema}
+        servicio={DescuentosService}
       />
     );
   }
