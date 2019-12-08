@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 const reducer = "COLONIAS";
 
 const schema = {
-  idColonia: "nueva",
+  idColonia: "nuevo",
   nombre: ""
 };
 

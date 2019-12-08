@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 const reducer = "TARIFAS";
 
 const schema = {
-    idTarifa: "nueva",
+    idTarifa: "nuevo",
     superficie: "",
     monto: ""
 };

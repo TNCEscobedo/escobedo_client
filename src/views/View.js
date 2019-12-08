@@ -10,8 +10,10 @@ import {
   agregarFila,
   editarFila,
   postFila,
-  setPropiedadFila
+  setPropiedadFila,
+  eliminarFila
 } from "../actions/tableActions";
+import { confirm } from "../actions/modalActions";
 import { connect } from "react-redux";
 
 class View extends Component {
@@ -51,7 +53,8 @@ class View extends Component {
     const actions = this.props.editable
       ? {
           editarFila: fila => this.props.editarFila(reducer, fila),
-          guardarFila: fila => this.props.postFila(reducer, servicio, fila)
+          guardarFila: fila => this.props.postFila(reducer, servicio, fila),
+          eliminarFila: fila => this.props.confirm(`¿Estás seguro que deseas eliminar ${fila.nombre}?`, () => this.props.eliminarFila(reducer, servicio, fila[idFila]))
         }
       : {};
 
@@ -91,5 +94,7 @@ export default connect(null, {
   editarFila,
   agregarFila,
   postFila,
-  setPropiedadFila
+  setPropiedadFila,
+  eliminarFila,
+  confirm
 })(View);

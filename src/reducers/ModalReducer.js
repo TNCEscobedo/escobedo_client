@@ -48,7 +48,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, showAlert: false, alertContent: "" };
     case CLEAR:
       return INITIAL_STATE;
-    case SHOW_SUCCESS:
+    case SHOW_SUCCESS:      
       return { ...state, showSuccess: true, successContent: action.payload };
     case CLEAR_SUCCESS:
       return { ...state, showSuccess: false, successContent: "" };

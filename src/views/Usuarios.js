@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 const reducer = "USUARIOS";
 
 const schema = {
-  idUsuario: "",
+  idUsuario: "nuevo",
   correo: "",
   telefono: ""
 }
