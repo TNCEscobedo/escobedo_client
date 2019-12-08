@@ -88,6 +88,7 @@ class Mercados extends Component {
             onChange={(key, value) =>
               this.props.setPropiedadFila(reducer, key, value)
             }
+            guardarFila={() => {}}
           />
         </Section>
       </View>
