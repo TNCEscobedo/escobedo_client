@@ -69,6 +69,7 @@ class View extends Component {
   }
 
   renderButton() {
+    if(this.props.button) return this.props.button;
     if (this.props.editable && !this.props.edited)
       return (
         <Button
